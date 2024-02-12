@@ -32,13 +32,12 @@ public class WebCrawler implements Runnable {
         if (level <= MAX_DEPTH) {
             Document document = request(url);
             if (document != null) {
-                for (Element link: document.select("a[href]")) {
+                for (Element link : document.select("a[href]")) {
                     String nextLink = link.absUrl("href");
                     if (!visitedLinks.contains(nextLink)) {
                         crawl(level++, nextLink);
                     }
                 }
-
             }
         }
     }
